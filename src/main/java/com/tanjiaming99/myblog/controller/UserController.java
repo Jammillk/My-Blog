@@ -1,6 +1,8 @@
 package com.tanjiaming99.myblog.controller;
 
 
+import com.tanjiaming99.myblog.common.lang.Result;
+import com.tanjiaming99.myblog.entity.User;
 import com.tanjiaming99.myblog.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +27,11 @@ public class UserController {
 
     @GetMapping("/index")
     public Object index(){
-        return userService.getById(1L);
+
+        User user = userService.getById(1L);
+
+
+        return Result.success(user);
     }
 
 
