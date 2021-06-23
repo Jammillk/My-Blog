@@ -41,4 +41,9 @@ public class Result implements Serializable {
     }
 
 
+    public static Result fail(int code, String message, Object data) {
+        return new Result(code, message, data);
+    }
+
+
 }

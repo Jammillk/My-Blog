@@ -4,6 +4,7 @@ package com.tanjiaming99.myblog.controller;
 import com.tanjiaming99.myblog.common.lang.Result;
 import com.tanjiaming99.myblog.entity.User;
 import com.tanjiaming99.myblog.service.UserService;
+import org.apache.shiro.authz.annotation.RequiresAuthentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +26,8 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+
+    @RequiresAuthentication
     @GetMapping("/index")
     public Object index(){
 
