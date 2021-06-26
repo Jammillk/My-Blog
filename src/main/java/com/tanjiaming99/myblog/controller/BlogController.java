@@ -40,7 +40,6 @@ public class BlogController {
         final int pageSize = 5;
         Page page = new Page(currentPage, pageSize);
         IPage pageData = blogService.page(page, new QueryWrapper<Blog>().orderByDesc("created"));
-
         return Result.success(pageData);
     }
 
@@ -48,7 +47,6 @@ public class BlogController {
     public Result detail(@PathVariable(name = "id") Long id) {
         Blog blog = blogService.getById(id);
         Assert.notNull(blog, "该博客已经被删除");
-
         return Result.success(blog);
     }
 
@@ -75,5 +73,15 @@ public class BlogController {
         return Result.success(temp);
     }
 
+    @RequiresAuthentication
+    @GetMapping("/delete/{id}")
+    public Result delete(@PathVariable(name = "id") Long id){
+        if (blogService.removeById(id)){
+            return Result.success("删除成功");
+        }else{
+            return Result.fail("删除失败");
+
+        }
+    }
 
 }
